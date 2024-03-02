@@ -1,7 +1,9 @@
 const root = document.getElementById("root");
-
+/*
+React.createElement(태그이름, props, contents)
+*/
 const h3 = React.createElement(
-    "h3", 
+    "h3",
     {
         onMouseEnter: () => console.log("mouse enter")
     },
