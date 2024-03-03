@@ -4,7 +4,9 @@ const root = document.getElementById("root");
 function App() {
     const [counter, setCounter] = React.useState(0); // React.useState()는 [요소, 요소를 다룰 함수]의 형태를 가진다.
     const onClick = () => {
-        setCounter(counter + 1);
+        /* State를 세팅하는 데는 2가지 방법이 있다. */
+        // setCounter(counter + 1); // 1. 직접 값을 설정해주기
+        setCounter((current) => current + 1); // 2. 함수를 전달해서 설정해주기
     }
     return (
         <div>
