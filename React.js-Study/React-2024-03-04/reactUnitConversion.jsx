@@ -2,16 +2,16 @@ const root = document.getElementById("root");
 
 function App() {
     const [amount, setAmount] = React.useState(0);
-    const [flipped, setFlipped] = React.useState(false); // 분->시, 시->분 모드를 구별하기 위한 flipped State 추가 생성
+    const [inverted, setInverted] = React.useState(false); // 분->시, 시->분 모드를 구별하기 위한 inverted State 추가 생성
     const onChange = (event) => {
         setAmount(event.target.value);
     };
     const reset = () => {
         setAmount(0);
     };
-    const onFlip = () => {
+    const onInvert = () => {
         reset();
-        setFlipped(!flipped);
+        setInverted(!inverted);
     };
     return (
         <div>
@@ -19,27 +19,27 @@ function App() {
             <div>
                 <label htmlFor="minutes">Minutes </label>
                 <input 
-                    value={flipped ? amount * 60 : amount} 
+                    value={inverted ? amount * 60 : amount} 
                     id="minutes" 
                     placeholder="Minutes" 
                     type="number" 
                     onChange={onChange}
-                    disabled={flipped}
+                    disabled={inverted}
                 />
             </div>
             <div>
                 <label htmlFor="hours">Hours </label>
                 <input 
-                    value={flipped ? amount : amount / 60} 
+                    value={inverted ? amount : amount / 60} 
                     id="hours" 
                     placeholder="Hours" 
                     type="number" 
                     onChange={onChange} 
-                    disabled={!flipped}
+                    disabled={!inverted}
                 />
             </div>
             <button onClick={reset}>Reset</button>
-            <button onClick={onFlip}>Flip</button>
+            <button onClick={onInvert}>{inverted ? "Minutes -> Hours" : "Hours -> Minutes"}</button>
         </div>
     );
 }
