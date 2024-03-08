@@ -53,6 +53,7 @@ function KmToMile() {
         setDistance(0);
     }
     const onInvert = () => {
+        reset();
         setInverted(!inverted);
     }
     return (
@@ -80,7 +81,7 @@ function KmToMile() {
                 />
             </div>
             <button onClick={reset}>Reset</button>
-            <button onClick={onInvert}>Invert</button>
+            <button onClick={onInvert}>{inverted ? "Mile -> Km" : "Km -> Mile"}</button>
         </div>
     );
 }
