@@ -19,10 +19,10 @@ function Btn({text, onClick}) { {/* 첫번째 Btn 컴포넌트에 인자로 onCl
 
 function App() {
     const [value, setValue] = React.useState("Save Changes");
-    const changesValue = () => setValue("Revert Changes");
+    const changeValue = () => setValue("Revert Changes");
     return (
         <div>
-            <Btn text={value} onClick={changesValue} /> {/* App 컴포넌트에서 첫번째 Btn에 onClick은 onClick 리스너가 아니라 그저 prop의 이름일 뿐이다. onClick prop은 changesValue 함수를 갖는데, 이 함수는 App 컴포넌트의 state인 value의 값을 "Revert Changes"로 바꿔준다. */}
+            <Btn text={value} onClick={changeValue} /> {/* App 컴포넌트에서 첫번째 Btn에 onClick은 onClick 리스너가 아니라 그저 prop의 이름일 뿐이다. onClick prop은 changesValue 함수를 갖는데, 이 함수는 App 컴포넌트의 state인 value의 값을 "Revert Changes"로 바꿔준다. */}
             <Btn text="Continue" />
         </div>
     )
