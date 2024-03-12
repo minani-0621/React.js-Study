@@ -20,7 +20,14 @@ function Btn({text, onClick}) { {/* 첫번째 Btn 컴포넌트에 인자로 onCl
 {/* 부모 컴포넌트의 state를 변경하면 당연히 자식 컴포넌트들도 리렌더링이 일어나는데, 이 때 React.memo()로 prop의 변경이 일어난 부분만 리렌더링 시킬 수 있다.
 어떤 부모 컴포넌트가 수 많은 자식 컴포넌트를 가지고 있는 경우 React.memo()를 통해 불필요한 리렌더링을 줄일 수 있는 것이다. 컴포넌트가 React.memo()로 wrapping 될 때, 
 React는 컴포넌트를 렌더링하고 결과를 메모이징한다. 그리고 다음 렌더링이 일어날 때 props가 같다면, React는 메모이징된 내용을 재사용한다. */}
-const MemorizedBtn = React.memo(Btn); 
+const MemorizedBtn = React.memo(Btn);
+
+{/* 리엑트는 파라미터를 잘못 넘겨도 확인할 수 없는 문제점이 존재한다. 이런 문제를 줄이기 위해서 PropTypes라는 모듈의 도움을 받을 수 있다.
+type과 다르게 입력 되었을 경우 console창에서 warning을 뜨게 할 수 있고, 파라미터에 값을 넣지 않는 경우 경고 메시지를 띄울 수 있다. */}
+MemorizedBtn.propTypes = {
+    text: PropTypes.string, // .isRequired가 없으면 optional하다는 의미
+    onClick: PropTypes.func.isRequired // .isRequired는 무조건 필요하다는 의미
+}
 
 function App() {
     const [value, setValue] = React.useState("Save Changes");
