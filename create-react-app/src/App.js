@@ -1,12 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
   const [counter, setValue] = useState(0);
+  const [keyword, setKeyword] = useState("");
   const onClick = () => setValue((prev) => prev + 1);
-  console.log("render"); {/* 렌더링이 두번씩 발생하는 이유는 index.js에서 App 컴포넌트가 React.StrictMode 태그에 감싸져 있어서 그렇다. StrictMode 태그는 
-                            create-react-app으로 설치했을 때 기본적으로 생성되는 태그로, 해당 태그로 감싸져 있는 경우 자손까지 검사하기 때문에 App 컴포넌트가 두 번 실행되는 것이다. */}
+  const onChange = (event) => setKeyword(event.target.value);
+  // useEffect()의 두번째 인자로 배열(deps)이 들어가는데, 이 배열안에 상태 변화를 감지할 대상을 넣는다. 만약에 배열이 비어있다면 감시하고 있는 state가 없다는 의미이므로 처음에 한번만 실행된다.
+  useEffect(() => {
+    console.log("I run only once.");
+  }, []);
+  useEffect(() => {
+    console.log("I run when 'keyword' changes.");
+  }, [keyword]);
+  useEffect(() => {
+    console.log("I run when 'counter' changes.");
+  }, [counter]);
+  useEffect(() => {
+    console.log("I run when 'keyword & counter' change.");
+  }, [keyword, counter]);
   return (
     <div>
+      <input 
+        value={keyword} 
+        onChange={onChange} 
+        type="text" 
+        placeholder="Search here..." />
       <h1>{counter}</h1>
       <button onClick={onClick}>click me</button>
     </div>
